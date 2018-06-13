@@ -11,14 +11,21 @@ import Foundation
 class SystemProfiler {
     enum ListDataTypes: String {
         case camera = "SPCameraDataType"
+        
+        func getNotExistErrorMessage() -> String {
+            switch self {
+            case .camera: return "カメラが認識されていません。再起動を試みてください。"
+            }
+        }
     }
-
     
     private let launchPath = "/usr/sbin/system_profiler"
+    let searchDeviceListDataType: SystemProfiler.ListDataTypes
     let arguments: [String]
     
-    init(searchFor deviceArg: SystemProfiler.ListDataTypes) {
-        self.arguments = ["-xml", deviceArg.rawValue]
+    init(searchFor listDeviceType: SystemProfiler.ListDataTypes) {
+        self.searchDeviceListDataType = listDeviceType
+        self.arguments = ["-xml", listDeviceType.rawValue]
     }
     
     func getData() -> Data {
@@ -30,5 +37,23 @@ class SystemProfiler {
         task.launch()
         
         return outputPipe.fileHandleForReading.readDataToEndOfFile()
+    }
+    
+    func isExistItem() -> Bool {
+        var format = PropertyListSerialization.PropertyListFormat.xml
+        let outputData = getData()
+        
+        do {
+            guard let plistData = try PropertyListSerialization.propertyList(from: outputData, options: [], format: &format) as? [[String: Any]] else {
+                print("Cannot Read PlistData.")
+                return false
+            }
+            
+            print(plistData[0]["_items"])
+            return true
+        } catch {
+            print("Error reading plist: \(error), format: \(format)")
+            return false
+        }
     }
 }

@@ -9,19 +9,10 @@
 import Foundation
 
 let systemProfiler = SystemProfiler(searchFor: SystemProfiler.ListDataTypes.camera)
-let outputData = systemProfiler.getData()
-var format = PropertyListSerialization.PropertyListFormat.xml
 
-do {
-    guard let plistData = try PropertyListSerialization.propertyList(from: outputData, options: [], format: &format) as? [[String: Any]] else {
-        print("Cannot Read PlistData.")
-        exit(1)
-    }
-    
-    print(plistData[0]["_items"])
-} catch {
-    print("Error reading plist: \(error), format: \(format)")
+if systemProfiler.isExistItem() {
+    exit(0)
+} else {
+    print(systemProfiler.searchDeviceListDataType.getNotExistErrorMessage())
     exit(1)
 }
-
-exit(0)
