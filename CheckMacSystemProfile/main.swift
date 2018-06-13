@@ -8,5 +8,13 @@
 
 import Foundation
 
-print("Hello, World!")
+let task = Process()
+let outputPipe = Pipe()
 
+task.launchPath = "/usr/sbin/system_profiler"
+task.arguments = ["SPCameraDataType"]
+task.standardOutput = outputPipe
+task.launch()
+let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+
+print(String(data: outputData, encoding: .utf8))
