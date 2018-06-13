@@ -9,7 +9,26 @@
 import Foundation
 
 class SystemProfiler {
-    let 
-    let array_device_args: [String]?
+    enum ListDataTypes: String {
+        case camera = "SPCameraDataType"
+    }
+
     
+    private let launchPath = "/usr/sbin/system_profiler"
+    let arguments: [String]
+    
+    init(searchFor deviceArg: SystemProfiler.ListDataTypes) {
+        self.arguments = ["-xml", deviceArg.rawValue]
+    }
+    
+    func getData() -> Data {
+        let task = Process()
+        let outputPipe = Pipe()
+        task.launchPath = launchPath
+        task.arguments = arguments
+        task.standardOutput = outputPipe
+        task.launch()
+        
+        return outputPipe.fileHandleForReading.readDataToEndOfFile()
+    }
 }

@@ -8,14 +8,8 @@
 
 import Foundation
 
-let task = Process()
-let outputPipe = Pipe()
-
-task.launchPath = "/usr/sbin/system_profiler"
-task.arguments = ["-xml","SPCameraDataType"]
-task.standardOutput = outputPipe
-task.launch()
-let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+let systemProfiler = SystemProfiler(searchFor: SystemProfiler.ListDataTypes.camera)
+let outputData = systemProfiler.getData()
 var format = PropertyListSerialization.PropertyListFormat.xml
 
 do {
