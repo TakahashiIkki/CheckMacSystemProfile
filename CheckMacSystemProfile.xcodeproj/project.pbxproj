@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		656F7B8420D0E0C80024E647 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F7B8320D0E0C80024E647 /* main.swift */; };
-		656F7B8B20D0E7050024E647 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F7B8A20D0E7050024E647 /* XMLParser.swift */; };
+		9AE0F30120D15E1E0009E7EE /* ArrayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE0F30020D15E1E0009E7EE /* ArrayResult.swift */; };
+		9AE0F30420D166B50009E7EE /* SystemProfiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE0F30320D166B50009E7EE /* SystemProfiler.swift */; };
+		9AE0F30620D1672F0009E7EE /* SystemProfilerListDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE0F30520D1672F0009E7EE /* SystemProfilerListDataTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +28,9 @@
 /* Begin PBXFileReference section */
 		656F7B8020D0E0C80024E647 /* CheckMacSystemProfile */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CheckMacSystemProfile; sourceTree = BUILT_PRODUCTS_DIR; };
 		656F7B8320D0E0C80024E647 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		656F7B8A20D0E7050024E647 /* XMLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
+		9AE0F30020D15E1E0009E7EE /* ArrayResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayResult.swift; sourceTree = "<group>"; };
+		9AE0F30320D166B50009E7EE /* SystemProfiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemProfiler.swift; sourceTree = "<group>"; };
+		9AE0F30520D1672F0009E7EE /* SystemProfilerListDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemProfilerListDataTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,28 @@
 		656F7B8220D0E0C80024E647 /* CheckMacSystemProfile */ = {
 			isa = PBXGroup;
 			children = (
+				9AE0F30220D166910009E7EE /* Request */,
+				9AE0F2FF20D15E010009E7EE /* Response */,
 				656F7B8320D0E0C80024E647 /* main.swift */,
-				656F7B8A20D0E7050024E647 /* XMLParser.swift */,
 			);
 			path = CheckMacSystemProfile;
+			sourceTree = "<group>";
+		};
+		9AE0F2FF20D15E010009E7EE /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				9AE0F30020D15E1E0009E7EE /* ArrayResult.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		9AE0F30220D166910009E7EE /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				9AE0F30520D1672F0009E7EE /* SystemProfilerListDataTypes.swift */,
+				9AE0F30320D166B50009E7EE /* SystemProfiler.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,8 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				656F7B8B20D0E7050024E647 /* XMLParser.swift in Sources */,
+				9AE0F30120D15E1E0009E7EE /* ArrayResult.swift in Sources */,
 				656F7B8420D0E0C80024E647 /* main.swift in Sources */,
+				9AE0F30420D166B50009E7EE /* SystemProfiler.swift in Sources */,
+				9AE0F30620D1672F0009E7EE /* SystemProfilerListDataTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

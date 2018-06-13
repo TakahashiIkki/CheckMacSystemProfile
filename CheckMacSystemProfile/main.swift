@@ -12,9 +12,22 @@ let task = Process()
 let outputPipe = Pipe()
 
 task.launchPath = "/usr/sbin/system_profiler"
-task.arguments = ["SPCameraDataType"]
+task.arguments = ["-xml","SPCameraDataType"]
 task.standardOutput = outputPipe
 task.launch()
 let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+var format = PropertyListSerialization.PropertyListFormat.xml
 
-print(String(data: outputData, encoding: .utf8))
+do {
+    guard let plistData = try PropertyListSerialization.propertyList(from: outputData, options: [], format: &format) as? [[String: Any]] else {
+        print("Cannot Read PlistData.")
+        exit(1)
+    }
+    
+    print(plistData[0]["_items"])
+} catch {
+    print("Error reading plist: \(error), format: \(format)")
+    exit(1)
+}
+
+exit(0)
