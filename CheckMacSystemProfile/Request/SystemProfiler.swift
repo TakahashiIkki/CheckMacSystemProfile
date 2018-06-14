@@ -17,6 +17,12 @@ class SystemProfiler {
             case .camera: return "カメラが認識されていません。再起動を試みてください。"
             }
         }
+        
+        func getExistMessage() -> String {
+            switch self {
+            case .camera: return "カメラが認識されています。"
+            }
+        }
     }
     
     private let launchPath = "/usr/sbin/system_profiler"
@@ -49,8 +55,11 @@ class SystemProfiler {
                 return false
             }
             
-            print(plistData[0]["_items"])
-            return true
+            if let items = plistData[0]["_items"] as? [[String: Any]] {
+                return (items[0]["_name"] != nil)
+            } else {
+                return false
+            }
         } catch {
             print("Error reading plist: \(error), format: \(format)")
             return false

@@ -11,6 +11,7 @@ import Foundation
 let systemProfiler = SystemProfiler(searchFor: SystemProfiler.ListDataTypes.camera)
 
 if systemProfiler.isExistItem() {
+    print(systemProfiler.searchDeviceListDataType.getExistMessage())
     exit(0)
 } else {
     print(systemProfiler.searchDeviceListDataType.getNotExistErrorMessage())
